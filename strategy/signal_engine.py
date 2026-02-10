@@ -1,9 +1,22 @@
 import joblib
 from database.db_manager import load_table
 
-model = joblib.load("models/saved_models/nifty_direction.model")
+_model = None
+
+def get_model():
+    global _model
+    if _model is None:
+        try:
+            _model = joblib.load("models/saved_models/nifty_direction.model")
+        except FileNotFoundError:
+            print("[signal_engine] Model not found. Using fallback rules.")
+            _model = None
+    return _model
 
 def generate_signal():
+    model = get_model()
+    if model is None:
+        return "NO_MODEL_SIGNAL"
 
     df = load_table("underlying_features").tail(1)
 
