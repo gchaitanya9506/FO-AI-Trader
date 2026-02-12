@@ -1,0 +1,140 @@
+F&O AI Trader Test Report
+Generated: 2026-02-12 13:20:42
+==================================================
+
+Test Summary:
+  Tests Run: 28
+  Failures: 0
+  Errors: 5
+  Skipped: 0
+  Success Rate: 82.1%
+
+ERRORS:
+--------------------
+Test: test_alerts (unittest.loader._FailedTest.test_alerts)
+Traceback:
+ImportError: Failed to import test module: test_alerts
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/loader.py", line 407, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/loader.py", line 350, in _get_module_from_name
+    __import__(name)
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/tests/test_alerts.py", line 13, in <module>
+    from execution.alert_system import send_telegram_message, send_alert
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/execution/alert_system.py", line 3, in <module>
+    from strategy.signal_engine import generate_signal
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/strategy/signal_engine.py", line 2, in <module>
+    from database.db_manager import load_table
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/database/db_manager.py", line 6, in <module>
+    from config.app_config import get_config
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/config/app_config.py", line 5, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+
+
+Test: test_configuration (unittest.loader._FailedTest.test_configuration)
+Traceback:
+ImportError: Failed to import test module: test_configuration
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/loader.py", line 407, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/loader.py", line 350, in _get_module_from_name
+    __import__(name)
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/tests/test_configuration.py", line 7, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+
+
+Test: test_clean_option_data (test_data_validation.TestDataCleaning.test_clean_option_data)
+Traceback:
+Traceback (most recent call last):
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/tests/test_data_validation.py", line 292, in test_clean_option_data
+    clean_data, report = clean_and_validate_data(dirty_option_data, "option")
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/utils/data_validation.py", line 347, in clean_and_validate_data
+    validation_result = validate_option_data(df_clean, f"{data_type.title()} Data")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/utils/data_validation.py", line 284, in validate_option_data
+    negative_strikes = (df["Strike Price"] <= 0).sum()
+                        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/.venv/lib/python3.11/site-packages/pandas/core/ops/common.py", line 76, in new_method
+    return method(self, other)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/.venv/lib/python3.11/site-packages/pandas/core/arraylike.py", line 52, in __le__
+    return self._cmp_method(other, operator.le)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/.venv/lib/python3.11/site-packages/pandas/core/series.py", line 6119, in _cmp_method
+    res_values = ops.comparison_op(lvalues, rvalues, op)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/.venv/lib/python3.11/site-packages/pandas/core/ops/array_ops.py", line 344, in comparison_op
+    res_values = comp_method_OBJECT_ARRAY(op, lvalues, rvalues)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/.venv/lib/python3.11/site-packages/pandas/core/ops/array_ops.py", line 129, in comp_method_OBJECT_ARRAY
+    result = libops.scalar_compare(x.ravel(), y, op)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "ops.pyx", line 107, in pandas._libs.ops.scalar_compare
+TypeError: '<=' not supported between instances of 'str' and 'int'
+
+
+Test: test_database (unittest.loader._FailedTest.test_database)
+Traceback:
+ImportError: Failed to import test module: test_database
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/loader.py", line 407, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/loader.py", line 350, in _get_module_from_name
+    __import__(name)
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/tests/test_database.py", line 14, in <module>
+    from database.db_manager import (
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/database/db_manager.py", line 6, in <module>
+    from config.app_config import get_config
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/config/app_config.py", line 5, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+
+
+Test: test_integration (unittest.loader._FailedTest.test_integration)
+Traceback:
+ImportError: Failed to import test module: test_integration
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/loader.py", line 407, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/unittest/loader.py", line 350, in _get_module_from_name
+    __import__(name)
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/tests/test_integration.py", line 15, in <module>
+    from database.db_manager import save_df, load_table, get_conn
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/database/db_manager.py", line 6, in <module>
+    from config.app_config import get_config
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/config/app_config.py", line 5, in <module>
+    import yaml
+ModuleNotFoundError: No module named 'yaml'
+
+
+
+COVERAGE REPORT:
+--------------------
+Name                            Stmts   Miss  Cover
+---------------------------------------------------
+app.py                             30     30     0%
+config/app_config.py              164    162     1%
+config/logging_config.py           75     74     1%
+database/db_manager.py             53     47    11%
+execution/alert_system.py          55     52     5%
+strategy/signal_engine.py          24     22     8%
+tests/__init__.py                   0      0   100%
+tests/test_alerts.py              113    106     6%
+tests/test_configuration.py       179    175     2%
+tests/test_data_validation.py     135      3    98%
+tests/test_database.py             73     65    11%
+tests/test_integration.py         138    129     7%
+tests/test_runner.py              114     92    19%
+utils/data_validation.py          223     60    73%
+---------------------------------------------------
+TOTAL                            1376   1017    26%

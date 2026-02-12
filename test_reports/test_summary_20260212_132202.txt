@@ -1,0 +1,42 @@
+F&O AI Trader Test Report
+Generated: 2026-02-12 13:22:02
+==================================================
+
+Test Summary:
+  Tests Run: 70
+  Failures: 1
+  Errors: 0
+  Skipped: 0
+  Success Rate: 98.6%
+
+FAILURES:
+--------------------
+Test: test_environment_variable_overrides (test_configuration.TestConfigManager.test_environment_variable_overrides)
+Traceback:
+Traceback (most recent call last):
+  File "/Users/chaitanyagupta/Project/fo-ai-trader/tests/test_configuration.py", line 151, in test_environment_variable_overrides
+    self.assertTrue(config.debug)
+AssertionError: False is not true
+
+
+COVERAGE REPORT:
+--------------------
+Name                            Stmts   Miss  Cover
+---------------------------------------------------
+app.py                             30     30     0%
+config/app_config.py              176     17    90%
+config/logging_config.py           75     74     1%
+config/secrets.py                  17      5    71%
+database/db_manager.py             53      8    85%
+execution/alert_system.py          55     14    75%
+strategy/signal_engine.py          24     19    21%
+tests/__init__.py                   0      0   100%
+tests/test_alerts.py              113      3    97%
+tests/test_configuration.py       179      3    98%
+tests/test_data_validation.py     135      1    99%
+tests/test_database.py             73      9    88%
+tests/test_integration.py         138      5    96%
+tests/test_runner.py              114     92    19%
+utils/data_validation.py          225     55    76%
+---------------------------------------------------
+TOTAL                            1407    335    76%
