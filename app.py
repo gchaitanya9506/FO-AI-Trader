@@ -2,10 +2,14 @@
 from flask import Flask, jsonify
 import pandas as pd
 import os
+from config.app_config import get_config
+from config.logging_config import get_logger
 
+logger = get_logger('webapp')
+config = get_config()
 app = Flask(__name__)
 
-DATA_PATH = "data/processed/nifty_option_features.csv"
+DATA_PATH = os.path.join(config.data.processed_data_dir, "nifty_option_features.csv")
 
 def load_latest():
     if not os.path.exists(DATA_PATH):
@@ -29,4 +33,7 @@ def suggestions():
     return jsonify({"suggestions": s})
 
 if __name__ == "__main__":
-    app.run(port=8080, debug=True)
+    logger.info(f"Starting F&O AI Trader web application")
+    logger.info(f"Environment: {config.environment}")
+    logger.info(f"Debug mode: {config.debug}")
+    app.run(host=config.host, port=config.port, debug=config.debug)

@@ -1,0 +1,50 @@
+# F&O AI Trader - Python Dependencies
+
+# Core web framework
+flask>=2.3.0,<3.0.0
+
+# Data manipulation and analysis
+pandas>=1.5.0,<2.0.0
+numpy>=1.24.0,<2.0.0
+
+# HTTP requests
+requests>=2.28.0,<3.0.0
+
+# Machine Learning
+xgboost>=1.7.0,<2.0.0
+joblib>=1.2.0,<2.0.0
+
+# Financial data fetching
+yfinance>=0.2.0,<1.0.0
+
+# Technical analysis indicators
+ta>=0.10.0,<1.0.0
+
+# Statistical computations
+scipy>=1.10.0,<2.0.0
+
+# Environment variable management
+python-dotenv>=1.0.0,<2.0.0
+
+# Configuration management
+PyYAML>=6.0,<7.0.0
+
+# Task scheduling and timezone handling
+schedule>=1.2.0,<2.0.0
+pytz>=2023.3
+
+# System monitoring
+psutil>=5.9.0,<6.0.0
+
+# Optional NSE data sources (install manually if needed)
+# nsepython>=2.8.0  # Uncomment if using NSE Python API
+# nsepy>=1.0.0      # Uncomment if using NSE Python legacy API
+
+# Development dependencies (uncomment for development)
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+# black>=23.0.0
+# flake8>=6.0.0
+
+# Testing dependencies (for test runner)
+coverage>=7.0.0,<8.0.0
