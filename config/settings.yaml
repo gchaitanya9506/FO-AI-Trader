@@ -1,1 +1,121 @@
-# Configuration file for API keys, strategy settings, etc.
+# F&O AI Trader Configuration
+# This file contains non-sensitive configuration settings
+# Sensitive settings like API keys should be set in environment variables
+
+# Application Environment (development, staging, production)
+environment: development
+debug: true
+port: 8080
+host: localhost
+
+# Database Configuration
+database:
+  path: database/market_data.db
+  connection_timeout: 30
+  max_retries: 3
+
+# API Configuration
+api:
+  nse_rate_limit: 30        # calls per minute for NSE API
+  telegram_rate_limit: 20   # calls per minute for Telegram
+  yfinance_rate_limit: 60   # calls per minute for YFinance
+  request_timeout: 10       # request timeout in seconds
+  max_retries: 3           # maximum retry attempts
+  retry_delay: 1.0         # initial retry delay in seconds
+
+# Trading Strategy Configuration
+trading:
+  default_symbol: NIFTY
+  default_ticker: ^NSEI
+  default_interval: 5m
+  default_period: 30d
+  prediction_horizon: 1     # periods ahead to predict
+  features:                 # technical indicators to use
+    - ema9
+    - ema21
+    - rsi
+    - atr
+    - vwap
+  model_retrain_days: 7     # retrain model every N days
+  signal_confidence_threshold: 0.6  # minimum confidence for trading signals
+
+# Machine Learning Model Configuration
+model:
+  model_type: xgboost
+  train_ratio: 0.7          # 70% for training
+  val_ratio: 0.15          # 15% for validation
+  test_ratio: 0.15         # 15% for testing
+  random_state: 42         # for reproducibility
+  n_estimators: 200
+  max_depth: 5
+  learning_rate: 0.1
+  early_stopping_rounds: 20
+
+# Data Processing Configuration
+data:
+  raw_data_dir: data/raw
+  processed_data_dir: data/processed
+  max_file_age_hours: 24    # maximum age of data files
+  data_quality_check_interval: 60  # minutes between quality checks
+  missing_data_threshold: 0.2      # 20% missing data threshold
+  price_change_alert_threshold: 0.1 # 10% price change alert
+
+# Data Pipeline Configuration
+data_pipeline:
+  fetch_interval_seconds: 300    # 5 minutes during market hours
+  market_hours:
+    start_time: "09:15"          # NSE market start time
+    end_time: "15:30"            # NSE market end time
+    timezone: "Asia/Kolkata"     # IST timezone
+  pre_market_fetch: false        # disable pre-market data fetching
+  post_market_fetch: true        # enable post-market analysis
+  retry_policy:
+    max_retries: 3               # maximum retry attempts for failed API calls
+    backoff_multiplier: 2        # exponential backoff multiplier
+    initial_delay: 2.0           # initial retry delay in seconds
+  data_retention_days: 30        # keep raw data for 30 days
+  enable_database_direct: true   # save directly to database instead of CSV
+  enable_auto_feature_engineering: true  # automatically trigger feature processing
+
+# Signal Generation Configuration
+signal_generation:
+  enabled: true
+  monitoring_interval_seconds: 120  # Check for signals every 2 minutes
+  market_hours_only: true
+
+  # PCR-based signal thresholds
+  pcr_thresholds:
+    buy_ce_max: 0.7     # PCR below this triggers BUY CE consideration
+    buy_pe_min: 1.3     # PCR above this triggers BUY PE consideration
+    neutral_range: [0.8, 1.2]  # No signals in this PCR range
+
+  # RSI signal boundaries
+  rsi_levels:
+    oversold_max: 30    # RSI below this = oversold
+    oversold_recovery: 50  # RSI crossing above this from oversold = recovery
+    overbought_min: 70  # RSI above this = overbought
+    overbought_decline: 50  # RSI crossing below this from overbought = decline
+
+  # Open Interest analysis
+  oi_analysis:
+    significant_change_pct: 15  # OI change % to be considered significant
+    volume_spike_multiplier: 2  # Volume > 2x average = spike
+    min_oi_level: 10000        # Minimum OI to consider for signals
+
+  # Signal management
+  signal_cooldown_minutes: 15  # Minimum time between same-type signals (also used as signal validity period)
+  confidence_threshold: 0.7    # Minimum confidence score to send signal
+  max_signals_per_hour: 6      # Rate limiting
+
+  # Signal expiry and renewal (NEW)
+  enable_signal_renewal: true       # Enable automatic signal renewal after expiry
+  signal_expiry_buffer_seconds: 30  # Grace period before allowing renewal
+
+# Logging Configuration
+logging:
+  level: INFO
+  log_to_file: true
+  log_to_console: true
+  log_dir: logs
+  max_file_size_mb: 10
+  backup_count: 5
